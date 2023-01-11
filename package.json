@@ -1,5 +1,6 @@
 {
   "name": "monster-rolodex",
+  "homepage":"http://rajeevRuhaan.github.io/monster-rolodex" ,
   "version": "0.1.0",
   "private": true,
   "dependencies": {

@@ -34,3 +34,7 @@ export type MonsterType = {
 const fetchUsers = async()=> {
         const users= await getData<MonsterType[]>("https://jsonplaceholder.typicode.com/users");
 ```
+
+
+[DEMO link](https://rajeevruhaan.github.io/monster-rolodex/)
+![img](./src/assets/photos/monster-rolodex.PNG)
