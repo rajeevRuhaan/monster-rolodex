@@ -1,18 +1,29 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, ChangeEvent } from "react";
 import "./App.css";
 import CardList from "./components/card-list/card-list.component";
 import SearchBox from "./components/search-box/search-box.component";
 
+import { getData } from "./utils/fetch.utils";
+
+export type MonsterType = {
+  id: string;
+  name: string;
+  email: string;
+}
+
 const App = () => {
   const [searchField, setSearchField] = useState("");
-  const [monsters, setMonsters] = useState([]);
+  const [monsters, setMonsters] = useState<MonsterType[]>([]);
   const [filteredMonsters, setFilteredMonsters] = useState(monsters);
 
+  console.log("rendered");
   useEffect(() => {
-    console.log("fired useeffect");
-    fetch("https://jsonplaceholder.typicode.com/users")
-      .then((response) => response.json())
-      .then((users) => setMonsters(users));
+      const fetchUsers = async()=> {
+        const users= await getData<MonsterType[]>("https://jsonplaceholder.typicode.com/users");
+
+        setMonsters(users)
+      }
+      fetchUsers();
   }, []);
 
   // this will only trigger when monster or searchfield changed the state
@@ -23,7 +34,7 @@ const App = () => {
     setFilteredMonsters(newFilteredMonsters);
   }, [monsters, searchField]);
 
-  const onSearchChange = (e) => {
+  const onSearchChange = (e: ChangeEvent<HTMLInputElement>): void => {
     const searchFieldString = e.target.value.toLowerCase();
     setSearchField(searchFieldString);
   };
