@@ -16,7 +16,6 @@ const App = () => {
   const [monsters, setMonsters] = useState<MonsterType[]>([]);
   const [filteredMonsters, setFilteredMonsters] = useState(monsters);
 
-  console.log("rendered");
   useEffect(() => {
       const fetchUsers = async()=> {
         const users= await getData<MonsterType[]>("https://jsonplaceholder.typicode.com/users");
